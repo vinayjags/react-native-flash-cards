@@ -10,20 +10,19 @@ export default class App extends React.Component {
     }
   }
 
-  componentWillMount() {
-    setTimeout(() => {
-      (async () => {
-        await Font.loadAsync({
-          "Raleway": require("./src/assets/fonts/Raleway.ttf")
-        })
-        this.setState({ isAppReady: true })
-      })()
-    }, 2000)
+  async _loadAppAsync() {
+    const fontPromise = Font.loadAsync({
+      "Raleway": require("./src/assets/fonts/Raleway.ttf")
+    })
+
+    return Promise.all([fontPromise])
   }
 
   render() {
     if (!this.state.isAppReady) {
-      return <AppLoading />
+      return <AppLoading
+        startAsync={this._loadAppAsync}
+        onFinish={() => this.setState({ isAppReady: true })} />
     }
 
     return (
