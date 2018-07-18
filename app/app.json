@@ -1,5 +1,24 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "icon": "./src/assets/images/icon.png",
+    "version": "1.0.0",
+    "splash": {
+      "backgroundColor": "#ffd34e",
+      "image": "./src/assets/images/icon.png"
+    },
+    "android": {
+      "package": "com.vinay.flashcard",
+      "splash": {
+        "backgroundColor": "#ffd34e",
+        "ldpi": "./src/assets/images/icon.png",
+        "mdpi": "./src/assets/images/icon.png",
+        "hdpi": "./src/assets/images/icon.png",
+        "xhdpi": "./src/assets/images/icon.png",
+        "xxhdpi": "./src/assets/images/icon.png",
+        "xxxhdpi": "./src/assets/images/icon.png"
+      },
+      "versionCode": 1
+    }
   }
 }
