@@ -8,6 +8,7 @@ export function handleInitialData() {
   return dispatch => {
     return getInitialData().then(({ users }) => {
       dispatch(receiveUsers(users))
+      dispatch(setAuthUser(AUTH_ID))
     })
   }
 }
