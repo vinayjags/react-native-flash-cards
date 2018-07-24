@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, StatusBar, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { AppLoading, Font } from "expo"
 import { Provider } from "react-redux"
 import configureStore from "./src/utils/store"
@@ -43,14 +43,9 @@ export default class App extends React.Component {
       )
     }
 
-    console.log("App Loaded")
-
     return (
       <Provider store={store}>
-        <View>
-          <StatusBar barStyle="default" />
-          <Root />
-        </View>
+        <Root />
       </Provider>
     )
   }
