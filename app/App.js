@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native"
 import { AppLoading, Font } from "expo"
 import { Provider } from "react-redux"
 import configureStore from "./src/utils/store"
+import { getInitialUsers } from "./src/utils/api"
 
 let store = null
 
@@ -10,8 +11,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isAppReady: false,
-      state: null
+      isAppReady: false
     }
   }
 
@@ -20,8 +20,10 @@ export default class App extends React.Component {
       Raleway: require("./src/assets/fonts/Raleway.ttf")
     })
 
+    const users = await getInitialUsers()
+
     const storePromise = new Promise((resolve, reject) => {
-      configureStore().then(devicestore => {
+      configureStore({ users }).then(devicestore => {
         store = devicestore
         resolve()
       })
@@ -39,8 +41,6 @@ export default class App extends React.Component {
         />
       )
     }
-
-    console.log("App Loaded")
 
     return (
       <Provider store={store}>

@@ -37,6 +37,6 @@ function generateUID() {
 
 export function _getUsers() {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve({ ...users }), 1000)
+    resolve({ ...users })
   })
 }
