@@ -1,9 +1,10 @@
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, StatusBar, View } from "react-native"
 import { AppLoading, Font } from "expo"
 import { Provider } from "react-redux"
 import configureStore from "./src/utils/store"
 import { getInitialUsers } from "./src/utils/api"
+import Root from "./src/components/Root"
 
 let store = null
 
@@ -42,18 +43,13 @@ export default class App extends React.Component {
       )
     }
 
+    console.log("App Loaded")
+
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Text style={styles.text}>
-            Open up App.js to start working on your app!
-          </Text>
-          <Text style={styles.text}>
-            Changes you make will automatically reload.
-          </Text>
-          <Text style={styles.text}>
-            Shake your phone to open the developer menu.
-          </Text>
+        <View>
+          <StatusBar barStyle="default" />
+          <Root />
         </View>
       </Provider>
     )
