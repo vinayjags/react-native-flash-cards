@@ -7,7 +7,7 @@ import { STORAGE_KEY } from "./settings"
 const configureStore = ({ users }) => {
   return AsyncStorage.getItem(STORAGE_KEY).then(data => {
     let store = null
-    if (!data) {
+    if (data) {
       store = createStore(reducers, { users }, middleware)
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(store.getState()))
     } else {
