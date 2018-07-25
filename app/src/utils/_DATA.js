@@ -3,26 +3,26 @@ let users = {
     id: "sarahedo",
     name: "Sarah Edo",
     avatarURL: "six.png",
-    flashCards: {},
-    answeredFlashCards: {}
+    decks: {},
+    answeredDecks: {}
   },
   tylermcginnis: {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
     avatarURL: "three.png",
-    flashCards: {},
-    answeredFlashCards: {}
+    decks: {},
+    answeredDecks: {}
   },
   johndoe: {
     id: "johndoe",
     name: "John Doe",
     avatarURL: "two.png",
-    flashCards: {},
-    answeredFlashCards: {}
+    decks: {},
+    answeredDecks: {}
   }
 }
 
-let flashCards = {}
+let decks = {}
 
 function generateUID() {
   return (

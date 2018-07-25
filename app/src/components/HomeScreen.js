@@ -1,5 +1,7 @@
 import React, { Component } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, StyleSheet } from "react-native"
+import TabNavigator from "../navigations/HomeTabNavigator"
+import CustomStatusBar from "./StatusBar"
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -9,7 +11,8 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Home</Text>
+        <CustomStatusBar barStyle="light-content" />
+        <TabNavigator />
       </View>
     )
   }
@@ -19,12 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffd34e",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  text: {
-    color: "white",
-    fontSize: 25
   }
 })
 
