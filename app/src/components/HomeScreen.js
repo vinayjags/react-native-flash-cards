@@ -4,6 +4,8 @@ import TabNavigator from "../navigations/HomeTabNavigator"
 import CustomStatusBar from "./StatusBar"
 
 class HomeScreen extends Component {
+  static router = TabNavigator.router
+
   static navigationOptions = {
     header: null
   }
@@ -12,7 +14,7 @@ class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <CustomStatusBar barStyle="light-content" />
-        <TabNavigator />
+        <TabNavigator navigation={this.props.navigation} />
       </View>
     )
   }
@@ -21,7 +23,7 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffd34e",
+    backgroundColor: "#ffd34e"
   }
 })
 
