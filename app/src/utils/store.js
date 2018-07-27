@@ -4,11 +4,11 @@ import reducers from "../reducers"
 import middleware from "../middleware"
 import { STORAGE_KEY } from "./settings"
 
-const configureStore = ({ users }) => {
+const configureStore = ({ users, decks }) => {
   return AsyncStorage.getItem(STORAGE_KEY).then(data => {
     let store = null
     if (!data) {
-      store = createStore(reducers, { users }, middleware)
+      store = createStore(reducers, { users, decks }, middleware)
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(store.getState()))
     } else {
       store = createStore(reducers, JSON.parse(data), middleware)

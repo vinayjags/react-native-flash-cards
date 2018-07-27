@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native"
 import { AppLoading, Font } from "expo"
 import { Provider } from "react-redux"
 import configureStore from "./src/utils/store"
-import { getInitialUsers } from "./src/utils/api"
+import { getInitialUsers, getInitialDecks } from "./src/utils/api"
 import Root from "./src/components/Root"
 
 let store = null
@@ -22,9 +22,10 @@ export default class App extends React.Component {
     })
 
     const users = await getInitialUsers()
+    const decks = await getInitialDecks()
 
     const storePromise = new Promise((resolve, reject) => {
-      configureStore({ users }).then(devicestore => {
+      configureStore({ users, decks }).then(devicestore => {
         store = devicestore
         resolve()
       })

@@ -40,3 +40,9 @@ export function _getUsers() {
     resolve({ ...users })
   })
 }
+
+export function _getDecks() {
+  return new Promise((resolve, reject) => {
+    resolve({ ...decks })
+  })
+}
