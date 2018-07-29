@@ -3,52 +3,42 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native"
 import CustomStatusBar from "./StatusBar"
 import { connect } from "react-redux"
 import { setLoggedInUser } from "../actions/shared"
+import { getImagePath } from "../utils/api"
 
 class SignInScreen extends Component {
   static navigationOptions = {
     header: null
   }
 
-  getImagePath(image) {
-    switch (image) {
-      case "one.png":
-        return require("../assets/images/avatars/one.png")
-      case "two.png":
-        return require("../assets/images/avatars/two.png")
-      case "three.png":
-        return require("../assets/images/avatars/three.png")
-      case "four.png":
-        return require("../assets/images/avatars/four.png")
-      case "five.png":
-        return require("../assets/images/avatars/five.png")
-      case "six.png":
-        return require("../assets/images/avatars/six.png")
-    }
-  }
-
-  onUserItemPress = (userId) => {
+  onUserItemPress = userId => {
     const { dispatch } = this.props
     dispatch(setLoggedInUser(userId))
   }
 
   render() {
-
-    const { users } = this.props
+    const { usersKeys, users } = this.props
 
     return (
       <View style={styles.container}>
         <CustomStatusBar barStyle="light-content" />
         <View style={styles.headerContainer}>
-          <Image style={styles.iconImage} source={require("../assets/images/icon.png")} />
+          <Image
+            style={styles.iconImage}
+            source={require("../assets/images/icon.png")}
+          />
           <Text style={styles.heading}>Please Sign-In to continue</Text>
         </View>
         <View style={styles.list}>
-          {Object.keys(users).map(userId => (
+          {usersKeys.map(userId => (
             <TouchableOpacity
               key={userId}
               style={styles.userItem}
-              onPress={() => this.onUserItemPress(userId)}>
-              <Image style={styles.userImage} source={this.getImagePath(users[userId].avatarURL)} />
+              onPress={() => this.onUserItemPress(userId)}
+            >
+              <Image
+                style={styles.userImage}
+                source={getImagePath(users[userId].avatarURL)}
+              />
               <Text style={styles.userName}>{users[userId].name}</Text>
             </TouchableOpacity>
           ))}
@@ -64,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffd34e",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: 'column',
+    flexDirection: "column"
   },
   headerContainer: {
     flex: 1,
@@ -114,7 +104,12 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToPros({ users }) {
+  const usersKeys = Object.keys(users).sort((a, b) => {
+    return users[b].name < users[a].name
+  })
+
   return {
+    usersKeys,
     users
   }
 }
