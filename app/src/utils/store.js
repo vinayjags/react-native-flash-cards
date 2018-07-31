@@ -14,7 +14,6 @@ const configureStore = ({ users, decks }) => {
       store = createStore(reducers, JSON.parse(data), middleware)
     }
     store.subscribe(() => {
-      console.log(store.getState())
       const newState = JSON.stringify(store.getState())
       AsyncStorage.mergeItem(STORAGE_KEY, newState)
     })

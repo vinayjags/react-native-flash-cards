@@ -8,7 +8,7 @@ const LeaderboardUserItem = ({ user, score, decks }) => {
     <View style={styles.container}>
       <Image style={styles.userImage} source={getImagePath(user.avatarURL)} />
       <View style={styles.details}>
-        <Text style={[styles.text, { fontWeight: "bold" }]}>{user.name}</Text>
+        <Text style={[styles.text, { fontFamily: "RalewayBold" }]}>{user.name}</Text>
         <Text style={styles.text}>Score: {score}</Text>
         <Text style={styles.text}>Decks Created: {decks}</Text>
       </View>

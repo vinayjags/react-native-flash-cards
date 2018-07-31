@@ -1,6 +1,7 @@
 import { getInitialData } from "../utils/api"
 import { receiveUsers } from "./users"
-import { setAuthUser } from "../actions/authUser"
+import { setAuthUser } from "./authUser"
+import { showLoader, hideLoader } from "./loader"
 
 const AUTH_ID = null
 
@@ -19,6 +20,10 @@ export function setLoggedInUser(authId) {
   }
 
   return dispatch => {
-    dispatch(setAuthUser(authId))
+    dispatch(showLoader("Please wait..."))
+    setTimeout(() => {
+      dispatch(setAuthUser(authId))
+      dispatch(hideLoader())
+    }, 3000)
   }
 }

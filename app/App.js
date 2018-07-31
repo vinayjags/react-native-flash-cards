@@ -18,7 +18,8 @@ export default class App extends React.Component {
 
   async _loadAppAsync() {
     const fontPromise = Font.loadAsync({
-      Raleway: require("./src/assets/fonts/Raleway.ttf")
+      Raleway: require("./src/assets/fonts/Raleway.ttf"),
+      RalewayBold: require("./src/assets/fonts/Raleway-Bold.ttf")
     })
 
     const users = await getInitialUsers()

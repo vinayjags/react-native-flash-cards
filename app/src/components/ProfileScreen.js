@@ -13,7 +13,7 @@ const ProfileScreen = ({ user, dispatch }) => {
         style={styles.logOutBtn}
         onPress={() => dispatch(setLoggedInUser(null))}
       >
-        <Text>Log Out</Text>
+        <Text style={styles.logOutBtnText}>Log Out</Text>
       </TouchableOpacity>
     </View>
   )
