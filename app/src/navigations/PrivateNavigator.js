@@ -15,6 +15,9 @@ export default createStackNavigator(
     }
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    navigationOptions: {
+      headerTintColor: "#000"
+    }
   }
 )

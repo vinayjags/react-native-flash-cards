@@ -1,4 +1,11 @@
-import { _getUsers, _getDecks } from "./_DATA"
+import { _getUsers, _getDecks, _addDeck } from "./_DATA"
+
+export function addDeck(deckInfo) {
+  return new Promise((resolve, reject) => {
+    const deck = _addDeck(deckInfo)
+    resolve(deck)
+  })
+}
 
 export function getInitialUsers() {
   return _getUsers()

@@ -3,21 +3,21 @@ let users = {
     id: "sarahedo",
     name: "Sarah Edo",
     avatarURL: "six.png",
-    decks: {},
+    decks: [],
     answeredDecks: {}
   },
   tylermcginnis: {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
     avatarURL: "three.png",
-    decks: {},
+    decks: [],
     answeredDecks: {}
   },
   johndoe: {
     id: "johndoe",
     name: "John Doe",
     avatarURL: "two.png",
-    decks: {},
+    decks: [],
     answeredDecks: {}
   }
 }
@@ -33,6 +33,37 @@ function generateUID() {
       .toString(36)
       .substring(2, 15)
   )
+}
+
+function formatDeckForAdd({ title, user }) {
+  return {
+    id: generateUID(),
+    title,
+    cards: [],
+    createdBy: user
+  }
+}
+
+export function _addDeck({ title, user }) {
+  return new Promise((resolve, reject) => {
+    const deck = formatDeckForAdd({ title, user })
+    decks = {
+      ...decks,
+      [deck.id]: deck
+    }
+
+    users = {
+      ...users,
+      [user]: {
+        ...users[user],
+        decks: users[user].decks.concat(deck.id)
+      }
+    }
+
+    setTimeout(() => {
+      resolve(deck)
+    }, 2000)
+  })
 }
 
 export function _getUsers() {

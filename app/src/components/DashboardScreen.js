@@ -1,35 +1,74 @@
 import React from "react"
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView
+} from "react-native"
 import { connect } from "react-redux"
 import { FontAwesome } from "@expo/vector-icons"
+import DeckItem from "./DeckItem"
 
 const DashboardScreen = ({ decks, users, navigation }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.hdr}>
         <Text style={styles.hdrTitle}>Decks</Text>
         <TouchableOpacity
           style={styles.createDeckBtn}
-          onPress={() => navigation.navigate('AddDeck')}
+          onPress={() => navigation.navigate("AddDeck")}
         >
-          <Text style={styles.createDeckBtnText}>
-            <FontAwesome name="plus" style={{ marginRight: 10 }} size={16} color="black" />Add
-          </Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center"
+            }}
+          >
+            <FontAwesome name="plus" size={16} color="black" />
+            <Text style={styles.createDeckBtnText}>Add Deck</Text>
+          </View>
         </TouchableOpacity>
       </View>
+      <ScrollView style={styles.listView}>
+        {Object.keys(decks).length === 0 && (
+          <View style={{ flex: 1 }}>
+            <FontAwesome
+              style={[
+                styles.createDeckBtnText,
+                { textAlign: "center", fontSize: 30, marginBottom: 10 }
+              ]}
+              name="warning"
+              color="black"
+            />
+            <Text style={[styles.createDeckBtnText, { textAlign: "center" }]}>
+              No Decks Found
+            </Text>
+          </View>
+        )}
+        {Object.keys(decks).length !== 0 &&
+          Object.keys(decks).map(deckId => {
+            return <DeckItem key={deckId} deckId />
+          })}
+      </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  hdr: {
+  container: {
     flex: 1,
+    justifyContent: "flex-start"
+  },
+  hdr: {
     height: 50,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    paddingTop: 20
+    paddingTop: 10
   },
   hdrTitle: {
     fontFamily: "RalewayBold",
@@ -40,8 +79,12 @@ const styles = StyleSheet.create({
   },
   createDeckBtnText: {
     fontFamily: "RalewayBold",
-    textAlign: "center",
+    textAlign: "right",
     fontSize: 16
+  },
+  listView: {
+    flex: 1,
+    padding: 10
   }
 })
 

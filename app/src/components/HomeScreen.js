@@ -13,7 +13,7 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CustomStatusBar barStyle="light-content" />
+        <CustomStatusBar barStyle="default" />
         <TabNavigator navigation={this.props.navigation} />
       </View>
     )

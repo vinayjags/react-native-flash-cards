@@ -1,5 +1,6 @@
-import { getInitialData } from "../utils/api"
-import { receiveUsers } from "./users"
+import { getInitialData, addDeck as addDeckApi } from "../utils/api"
+import { receiveUsers, addDeckToUser } from "./users"
+import { addDeck } from "./decks"
 import { setAuthUser } from "./authUser"
 import { showLoader, hideLoader } from "./loader"
 
@@ -24,6 +25,21 @@ export function setLoggedInUser(authId) {
     setTimeout(() => {
       dispatch(setAuthUser(authId))
       dispatch(hideLoader())
-    }, 3000)
+    }, 2000)
+  }
+}
+
+export function handleAddDeck(deckInfo) {
+  return dispatch => {
+    dispatch(showLoader("Creating Deck. Please wait!"))
+    return addDeckApi(deckInfo)
+      .then(deck => {
+        dispatch(addDeck(deck))
+        dispatch(addDeckToUser(deck))
+        dispatch(hideLoader())
+      })
+      .catch(error => {
+        dispatch(hideLoader())
+      })
   }
 }
