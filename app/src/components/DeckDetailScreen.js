@@ -28,7 +28,10 @@ class DeckDetailScreen extends Component {
                     </TouchableOpacity>
                 )}
                 {deck.cards.length !== 0 && (
-                    <TouchableOpacity style={styles.startBtn}>
+                    <TouchableOpacity style={styles.startBtn} onPress={() => navigate("Quiz", {
+                        deckId: deck.id,
+                        title: deck.title
+                    })}>
                         <Text style={styles.btnText}>Start Quiz</Text>
                     </TouchableOpacity>
                 )}

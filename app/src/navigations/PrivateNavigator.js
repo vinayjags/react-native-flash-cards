@@ -2,6 +2,8 @@ import HomeScreen from "../components/HomeScreen"
 import AddDeckScreen from "../components/AddDeckScreen"
 import DeckDetailScreen from "../components/DeckDetailScreen"
 import AddCardToDeckScreen from "../components/AddCardToDeckScreen"
+import QuizScreen from "../components/QuizScreen"
+
 import { createStackNavigator } from "react-navigation"
 import { Platform } from "react-native"
 
@@ -21,6 +23,9 @@ export default createStackNavigator(
     },
     AddCard: {
       screen: AddCardToDeckScreen
+    },
+    Quiz: {
+      screen: QuizScreen
     }
   },
   {
