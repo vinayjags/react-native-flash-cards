@@ -10,7 +10,7 @@ import { connect } from "react-redux"
 import { FontAwesome } from "@expo/vector-icons"
 import DeckItem from "./DeckItem"
 
-const DashboardScreen = ({ decks, users, navigation }) => {
+const DashboardScreen = ({ decks, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.hdr}>
@@ -50,7 +50,7 @@ const DashboardScreen = ({ decks, users, navigation }) => {
         )}
         {Object.keys(decks).length !== 0 &&
           Object.keys(decks).map(deckId => {
-            return <DeckItem key={deckId} deckId />
+            return <DeckItem key={deckId} deckId={deckId} navigation={navigation} />
           })}
       </ScrollView>
     </View>
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   listView: {
-    flex: 1,
     padding: 10
   }
 })

@@ -1,6 +1,6 @@
-import { getInitialData, addDeck as addDeckApi } from "../utils/api"
+import { getInitialData, addDeck as addDeckApi, addCardToDeck } from "../utils/api"
 import { receiveUsers, addDeckToUser } from "./users"
-import { addDeck } from "./decks"
+import { addDeck, addCard } from "./decks"
 import { setAuthUser } from "./authUser"
 import { showLoader, hideLoader } from "./loader"
 
@@ -37,6 +37,22 @@ export function handleAddDeck(deckInfo) {
         dispatch(addDeck(deck))
         dispatch(addDeckToUser(deck))
         dispatch(hideLoader())
+        return deck
+      })
+      .catch(error => {
+        dispatch(hideLoader())
+      })
+  }
+}
+
+export function handleAddCard(cardInfo) {
+  return dispatch => {
+    dispatch(showLoader("Adding Card. Please wait!"))
+    return addCardToDeck(cardInfo)
+      .then(card => {
+        dispatch(addCard(card))
+        dispatch(hideLoader())
+        return card
       })
       .catch(error => {
         dispatch(hideLoader())

@@ -44,24 +44,37 @@ function formatDeckForAdd({ title, user }) {
   }
 }
 
+function formatCardForAdd({ question, answer, deckId }) {
+  return {
+    id: generateUID(),
+    question,
+    answer,
+    deckId
+  }
+}
+
+export function _addCardToDeck({ question, answer, deckId }) {
+  return new Promise((resolve, reject) => {
+    const card = formatCardForAdd({ question, answer, deckId })
+    setTimeout(() => {
+      try {
+        resolve(card)
+      } catch (error) {
+        reject(error)
+      }
+    }, 2000)
+  })
+}
+
 export function _addDeck({ title, user }) {
   return new Promise((resolve, reject) => {
     const deck = formatDeckForAdd({ title, user })
-    decks = {
-      ...decks,
-      [deck.id]: deck
-    }
-
-    users = {
-      ...users,
-      [user]: {
-        ...users[user],
-        decks: users[user].decks.concat(deck.id)
-      }
-    }
-
     setTimeout(() => {
-      resolve(deck)
+      try {
+        resolve(deck)
+      } catch (error) {
+        reject(error)
+      }
     }, 2000)
   })
 }

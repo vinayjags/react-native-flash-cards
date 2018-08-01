@@ -49,7 +49,7 @@ export default createBottomTabNavigator(
         backgroundColor: "white",
         shadowColor: "rgba(0, 0, 0, 0.24)",
         shadowOffset: {
-          width: 0,
+          width: 1,
           height: 3
         },
         shadowRadius: 6,

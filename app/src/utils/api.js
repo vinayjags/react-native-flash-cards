@@ -1,9 +1,24 @@
-import { _getUsers, _getDecks, _addDeck } from "./_DATA"
+import { _getUsers, _getDecks, _addDeck, _addCardToDeck } from "./_DATA"
 
 export function addDeck(deckInfo) {
   return new Promise((resolve, reject) => {
-    const deck = _addDeck(deckInfo)
-    resolve(deck)
+    try {
+      const deck = _addDeck(deckInfo)
+      resolve(deck)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export function addCardToDeck(cardInfo) {
+  return new Promise((resolve, reject) => {
+    try {
+      const card = _addCardToDeck(cardInfo)
+      resolve(card)
+    } catch (error) {
+      reject(error)
+    }
   })
 }
 
