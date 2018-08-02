@@ -26,20 +26,26 @@ function mapStateToProps({ users, decks }) {
 
   const usersKeys = Object.keys(users)
     .sort((a, b) => {
-      return users[b].name < users[a].name
-    })
-    .sort((a, b) => {
       let userAScore = 0
       Object.keys(users[a].answeredDecks).map(deck => {
-        userAScore = userAScore + users[a].answeredDecks[deck]
+        userAScore = userAScore + users[a].answeredDecks[deck].score
       })
 
       let userBScore = 0
       Object.keys(users[b].answeredDecks).map(deck => {
-        userAScore = userAScore + users[b].answeredDecks[deck]
+        userBScore = userBScore + users[b].answeredDecks[deck].score
       })
 
-      return userBScore / deckCount <= userAScore / deckCount
+      userBScore = userBScore / deckCount
+      userAScore = userAScore / deckCount
+
+      if (userAScore > userBScore) {
+        return -1
+      } else if (userAScore < userBScore) {
+        return 1
+      }
+
+      return 0
     })
 
   return {

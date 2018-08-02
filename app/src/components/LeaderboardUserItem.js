@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Text, StyleSheet, Image } from "react-native"
 import { connect } from "react-redux"
-import { getImagePath } from "../utils/api"
+import { getImagePath, roundUp } from "../utils/api"
 
 const LeaderboardUserItem = ({ user, score, decks }) => {
   return (
@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
 function mapStateToProps({ users }, { userId, deckCount, index }) {
   let userScore = 0
   Object.keys(users[userId].answeredDecks).map(deck => {
-    userScore = userAScore + users[userId].answeredDecks[deck]
+    userScore = userScore + users[userId].answeredDecks[deck].score
   })
 
   return {
     user: users[userId],
-    score: (userScore / deckCount) * 100,
+    score: roundUp(userScore / deckCount),
     decks: users[userId].decks.length
   }
 }

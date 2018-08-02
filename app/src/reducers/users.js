@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, ADD_DECK_TO_USER } from "../actions/users"
+import { RECEIVE_USERS, ADD_DECK_TO_USER, SAVE_QUIZ_SCORE } from "../actions/users"
 import decks from "./decks"
 
 export default function users(state = {}, action) {
@@ -15,6 +15,17 @@ export default function users(state = {}, action) {
         [createdBy]: {
           ...state[createdBy],
           decks: state[createdBy].decks.concat(id)
+        }
+      }
+    case SAVE_QUIZ_SCORE:
+      return {
+        ...state,
+        [action.info.userId]: {
+          ...state[action.info.userId],
+          answeredDecks: {
+            ...state[action.info.userId].answeredDecks,
+            [action.info.deckId]: action.info.scoreInfo
+          }
         }
       }
     default:

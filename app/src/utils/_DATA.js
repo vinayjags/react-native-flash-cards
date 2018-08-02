@@ -53,6 +53,26 @@ function formatCardForAdd({ question, answer, deckId }) {
   }
 }
 
+function formatScore(score) {
+  return {
+    score,
+    quizTakenOn: Math.floor(new Date().getTime() / 1000)
+  }
+}
+
+export function _saveScoreToUser(score) {
+  return new Promise((resolve, reject) => {
+    const scoreInfo = formatScore(score)
+    setTimeout(() => {
+      try {
+        resolve(scoreInfo)
+      } catch (error) {
+        reject(error)
+      }
+    }, 2000)
+  })
+}
+
 export function _addCardToDeck({ question, answer, deckId }) {
   return new Promise((resolve, reject) => {
     const card = formatCardForAdd({ question, answer, deckId })

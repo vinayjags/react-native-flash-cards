@@ -1,4 +1,15 @@
-import { _getUsers, _getDecks, _addDeck, _addCardToDeck } from "./_DATA"
+import { _getUsers, _getDecks, _addDeck, _addCardToDeck, _saveScoreToUser } from "./_DATA"
+
+export function saveScoreToUser(score) {
+  return new Promise((resolve, reject) => {
+    try {
+      const scoreInfo = _saveScoreToUser(score)
+      resolve(scoreInfo)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
 
 export function addDeck(deckInfo) {
   return new Promise((resolve, reject) => {
@@ -45,4 +56,8 @@ export function getImagePath(image) {
     case "six.png":
       return require("../assets/images/avatars/six.png")
   }
+}
+
+export function roundUp(value) {
+  return Math.round(value * 100) / 100
 }
