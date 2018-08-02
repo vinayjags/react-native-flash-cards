@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { connect } from "react-redux"
 import { getImagePath } from "../utils/api"
 import { setLoggedInUser } from "../actions/shared"
+import { clearLocalNotification } from "../utils/helper"
 
 const ProfileScreen = ({ user, dispatch }) => {
   return (
@@ -11,7 +12,10 @@ const ProfileScreen = ({ user, dispatch }) => {
       <Text style={styles.userLog}>Logged in as {user.name}</Text>
       <TouchableOpacity
         style={styles.logOutBtn}
-        onPress={() => dispatch(setLoggedInUser(null))}
+        onPress={() => {
+          clearLocalNotification()
+          dispatch(setLoggedInUser(null))
+        }}
       >
         <Text style={styles.logOutBtnText}>Log Out</Text>
       </TouchableOpacity>

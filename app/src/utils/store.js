@@ -3,7 +3,6 @@ import { createStore } from "redux"
 import reducers from "../reducers"
 import middleware from "../middleware"
 import { STORAGE_KEY } from "./settings"
-import { hideLoader } from "../actions/loader";
 
 const configureStore = ({ users, decks }) => {
   return AsyncStorage.getItem(STORAGE_KEY).then(data => {
@@ -14,7 +13,6 @@ const configureStore = ({ users, decks }) => {
     } else {
       store = createStore(reducers, JSON.parse(data), middleware)
     }
-    store.dispatch(hideLoader())
     store.subscribe(() => {
       const newState = JSON.stringify(store.getState())
       AsyncStorage.mergeItem(STORAGE_KEY, newState)

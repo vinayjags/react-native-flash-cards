@@ -5,6 +5,7 @@ import CardItem from "./CardItem"
 import { roundUp } from "../utils/api"
 import { FontAwesome } from "@expo/vector-icons"
 import { handleSaveUserScore } from "../actions/shared"
+import { clearLocalNotification, setLocalNotification } from "../utils/helper"
 
 class QuizScreen extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -53,6 +54,7 @@ class QuizScreen extends Component {
 
         saveScorePromise.then(scoreInfo => {
             if (typeof scoreInfo !== "undefined") {
+                clearLocalNotification().then(setLocalNotification)
                 setTimeout(() => {
                     Alert.alert(
                         "Success",
@@ -60,7 +62,10 @@ class QuizScreen extends Component {
                         [
                             {
                                 text: "OK",
-                                onPress: () => this.props.navigation.navigate("Home")
+                                onPress: () => this.props.navigation.navigate("DeckDetails", {
+                                    deckId: deck.id,
+                                    title: deck.title
+                                })
                             }
                         ],
                         { cancelable: false }
