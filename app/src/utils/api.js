@@ -1,4 +1,10 @@
-import { _getUsers, _getDecks, _addDeck, _addCardToDeck, _saveScoreToUser } from "./_DATA"
+import {
+  _getUsers,
+  _getDecks,
+  _addDeck,
+  _addCardToDeck,
+  _saveScoreToUser
+} from "./_DATA"
 
 export function saveScoreToUser(score) {
   return new Promise((resolve, reject) => {

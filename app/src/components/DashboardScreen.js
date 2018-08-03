@@ -12,7 +12,6 @@ import DeckItem from "./DeckItem"
 import { setLocalNotification } from "../utils/helper"
 
 class DashboardScreen extends Component {
-
   componentDidMount() {
     setLocalNotification()
   }
@@ -58,7 +57,13 @@ class DashboardScreen extends Component {
           )}
           {Object.keys(decks).length !== 0 &&
             Object.keys(decks).map(deckId => {
-              return <DeckItem key={deckId} deckId={deckId} navigation={navigation} />
+              return (
+                <DeckItem
+                  key={deckId}
+                  deckId={deckId}
+                  navigation={navigation}
+                />
+              )
             })}
         </ScrollView>
       </View>

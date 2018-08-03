@@ -6,3 +6,7 @@ To run the application please follow the below:
 - Go to app folder
 - Run *npm install*
 - Run *npm run start*
+- - -
+
+Testing
+- The application has been tested on Android Emulator and iOS Simulator

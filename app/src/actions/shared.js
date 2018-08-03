@@ -1,4 +1,9 @@
-import { getInitialData, addDeck as addDeckApi, addCardToDeck, saveScoreToUser as saveScoreAPI } from "../utils/api"
+import {
+  getInitialData,
+  addDeck as addDeckApi,
+  addCardToDeck,
+  saveScoreToUser as saveScoreAPI
+} from "../utils/api"
 import { receiveUsers, addDeckToUser, saveScoreForUser } from "./users"
 import { addDeck, addCard } from "./decks"
 import { setAuthUser } from "./authUser"
@@ -64,18 +69,20 @@ export function handleSaveUserScore(data) {
   console.log(data)
   return dispatch => {
     dispatch(showLoader("Saving Score. Please wait"))
-    return saveScoreAPI(data.score).then(scoreInfo => {
-      const info = {
-        userId: data.userId,
-        deckId: data.deckId,
-        scoreInfo
-      }
-      dispatch(saveScoreForUser(info))
-      dispatch(hideLoader())
-      return info
-    }).catch(error => {
-      console.log(error)
-      dispatch(hideLoader())
-    })
+    return saveScoreAPI(data.score)
+      .then(scoreInfo => {
+        const info = {
+          userId: data.userId,
+          deckId: data.deckId,
+          scoreInfo
+        }
+        dispatch(saveScoreForUser(info))
+        dispatch(hideLoader())
+        return info
+      })
+      .catch(error => {
+        console.log(error)
+        dispatch(hideLoader())
+      })
   }
 }

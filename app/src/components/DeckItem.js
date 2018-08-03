@@ -4,25 +4,38 @@ import { connect } from "react-redux"
 import { getImagePath } from "../utils/api"
 
 const DeckItem = ({ deck, author, isEditable, navigation }) => {
-
   const { navigate } = navigation
 
   return (
     <View style={styles.container}>
       <View style={{ width: "30%" }}>
-        <Image style={styles.authorImage} source={getImagePath(author.avatarURL)} />
+        <Image
+          style={styles.authorImage}
+          source={getImagePath(author.avatarURL)}
+        />
         <Text style={styles.authorName}>{author.name}</Text>
       </View>
-      <View style={{
-        flex: 1
-      }}>
+      <View
+        style={{
+          flex: 1
+        }}
+      >
         <Text style={styles.deckTitle}>{deck.title}</Text>
-        <Text style={styles.deckCardCount}>{`No. Of Cards: ${deck.cards.length}`}</Text>
-        <TouchableOpacity style={styles.startBtn} onPress={() => navigate("DeckDetails", {
-          deckId: deck.id,
-          title: deck.title
-        })}>
-          <Text style={styles.startBtnText}>{isEditable ? "Edit / Start" : "Start"}</Text>
+        <Text style={styles.deckCardCount}>{`No. Of Cards: ${
+          deck.cards.length
+        }`}</Text>
+        <TouchableOpacity
+          style={styles.startBtn}
+          onPress={() =>
+            navigate("DeckDetails", {
+              deckId: deck.id,
+              title: deck.title
+            })
+          }
+        >
+          <Text style={styles.startBtnText}>
+            {isEditable ? "Edit / Start" : "Start"}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

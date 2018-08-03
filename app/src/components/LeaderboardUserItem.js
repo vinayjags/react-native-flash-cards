@@ -11,7 +11,7 @@ const LeaderboardUserItem = ({ user, score, decks }) => {
         <Text style={[styles.text, { fontFamily: "RalewayBold" }]}>
           {user.name}
         </Text>
-        <Text style={styles.text}>Score: {score}</Text>
+        <Text style={styles.text}>Score: {score}%</Text>
         <Text style={styles.text}>Decks Created: {decks}</Text>
       </View>
     </View>

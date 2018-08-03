@@ -1,4 +1,8 @@
-import { RECEIVE_USERS, ADD_DECK_TO_USER, SAVE_QUIZ_SCORE } from "../actions/users"
+import {
+  RECEIVE_USERS,
+  ADD_DECK_TO_USER,
+  SAVE_QUIZ_SCORE
+} from "../actions/users"
 import decks from "./decks"
 
 export default function users(state = {}, action) {
